@@ -1,0 +1,115 @@
+body{
+    background:#262a2f ;
+
+}
+
+.container {
+    width: 400px;
+    padding: 25px 35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    background: #fff;
+    border-radius: 10px;
+
+}
+
+.container p{
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.container input{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #494eea;
+    outline: 0;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border-radius: 5px;
+
+
+}
+
+.container button{
+    width: 100%;
+    height: 50px;
+    background: #494eea;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    margin: 20px 0;
+    font-weight: 500;
+
+}
+
+#imgBox{
+    width: 200px;
+    border-radius: 5px ;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s;
+
+}
+
+#imgBox img{
+    width: 100%;
+    padding: 10px;
+}
+
+#imgBox.show-img{
+    max-height: 300px;
+    
+    margin: 10px auto;
+    border: 1px solid #d1d1d1;
+}
+
+.error{
+    animation: shake 0.1s linear 10;
+}
+
+@keyframes shake{
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(-2px);
+    }
+    50%{
+        transform: translateX(0);
+    }
+    75%{
+        transform: translateX(2px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+/* .error Class:
+
+This defines a CSS class named .error. Any HTML element with this class applied will be affected by the animation.
+2. animation Property:
+
+This property is used within the .error class to specify the animation to be applied.
+Here's the breakdown of the values used:
+shake: This refers to the name of the animation defined using the @keyframes rule (explained later).
+0.1s: This sets the duration of the animation to 0.1 seconds (100 milliseconds).
+linear: This defines the timing function of the animation. In this case, linear creates a constant speed throughout the animation. Other options include ease-in, ease-out, or ease-in-out for different pacing effects.
+10: This specifies the number of times the animation should repeat. Here, it's set to repeat 10 times.
+3. @keyframes shake Rule:
+
+This rule defines the actual animation named shake that was referenced in the .error class.
+It uses percentages to define the animation's behavior at different points in time (0%, 25%, 50%, 75%, and 100%).
+Inside the rule, the transform: translateX(value) property is used to move the element horizontally. The value specifies the amount of horizontal movement.
+Here's how the animation works:
+At 0%, the element is at its original position (translateX(0)).
+At 25%, the element moves slightly to the left by 2 pixels (translateX(-2px)).
+At 50% (midpoint), the element returns to its original position (translateX(0)).
+At 75%, the element moves slightly to the right by 2 pixels (translateX(2px)).
+At 100%, the element returns to its original position (translateX(0)) again.*/
