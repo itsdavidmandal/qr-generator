@@ -52,8 +52,9 @@ body{
     width: 200px;
     border-radius: 5px ;
     max-height: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     transition: max-height 1s;
+    
 
 }
 
