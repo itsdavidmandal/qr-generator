@@ -1,47 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR code generator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
+      <p>Enter your text or URL</p>
 
-        <p>Enter your text or URL</p>
+      <input type="text" placeholder="Text or URL" id="qrText" />
 
-        <input type="text" placeholder="Text or URL" id="qrText">
+      <div id="imgBox">
+        <img src="" id="qrimage" download="" />
+      </div>
 
-        <div id="imgBox">
-            <img src="" id="qrimage">
-        </div>
-
-        <button onclick="generateqr()">Generate QR code </button>
-
+      <button onclick="generateqr()">Generate QR code</button>
+      <button id="downloadButton">Download QR Code</button>
     </div>
 
     <script>
-        let imgBox = document.getElementById("imgBox");
-        let qrimage = document.getElementById("qrimage");
-        let qrText = document.getElementById("qrText");
+      let imgBox = document.getElementById("imgBox");
+      let qrimage = document.getElementById("qrimage");
+      let qrText = document.getElementById("qrText");
 
-        function generateqr(){ 
-            /** the main function */
-            if(qrText.value.length >0){ // wont allow the function to continue of the field is empty 
-                
-                qrimage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
-                // takes the api of the qr code and then adds the value in the text field 
-                imgBox.classList.add("show-img");
-            }else{ // this is to add the shaking animation 
-                qrText.classList.add('error');
-                setTimeout(()=>{ // remove the animation after a certain time 
-                    qrText.classList.remove('error');
-                },1000) // time limit : 1k milisecond
-            }
+      //const downloadButton = document.getElementById("downloadButton");
+
+      function generateqr() {
+        /** the main function */
+        if (qrText.value.length > 0) {
+          // wont allow the function to continue of the field is empty
+
+          qrimage.src =
+            "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+            qrText.value;
+          // takes the api of the qr code and then adds the value in the text field
+          imgBox.classList.add("show-img");
+        } else {
+          // this is to add the shaking animation
+          qrText.classList.add("error");
+          setTimeout(() => {
+            // remove the animation after a certain time
+            qrText.classList.remove("error");
+          }, 1000); // time limit : 1k milisecond
         }
+      }
 
+      document
+        .getElementById("downloadButton")
+        .addEventListener("click", function () {
+          var imageSrc = document.getElementById("qrimage").src;
+
+          // Create a fetch request to get the image data
+          fetch(imageSrc)
+            .then((response) => response.blob())
+            .then((blob) => {
+              // Create a URL for the Blob
+              var url = window.URL.createObjectURL(blob);
+
+              // Create a link element
+              var link = document.createElement("a");
+              link.href = url;
+              link.download = "image.jpg"; // Filename for the downloaded image
+
+              // Append the link to the document body
+              document.body.appendChild(link);
+
+              // Simulate a click on the link
+              link.click();
+
+              // Remove the link from the document body after the download is initiated
+              document.body.removeChild(link);
+            });
+        });
     </script>
-
-</body>
+  </body>
 </html>
